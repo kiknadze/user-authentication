@@ -1,0 +1,221 @@
+.verify-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: px-to-rem(100px);
+}
+
+.verify-card {
+  width: 100%;
+  max-width: px-to-rem(450px);
+  padding: 0;
+
+  mat-card-header {
+    padding: px-to-rem(32px) px-to-rem(32px) px-to-rem(16px);
+    text-align: center;
+
+    mat-card-title {
+      color: $app-blue;
+      margin-bottom: px-to-rem(12px);
+    }
+  }
+
+  mat-card-content {
+    padding: 0 px-to-rem(32px) px-to-rem(32px);
+  }
+}
+
+.loading-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: px-to-rem(16px);
+  padding: px-to-rem(40px) 0;
+
+  p {
+    margin: 0;
+  }
+}
+
+.verification-form {
+  display: flex;
+  flex-direction: column;
+  gap: px-to-rem(24px);
+}
+
+.timer-section {
+  text-align: center;
+  padding: px-to-rem(16px);
+  background-color: $app-gray;
+  border-radius: px-to-rem(12px);
+  border: px-to-rem(1px) solid $app-dark-gray;
+}
+
+.timer-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: px-to-rem(8px);
+  margin-bottom: px-to-rem(8px);
+
+  mat-icon {
+    color: $app-green;
+  }
+
+  span {
+    color: $app-green;
+  }
+
+  &.expired {
+    mat-icon,
+    span {
+      color: $app-red;
+    }
+  }
+}
+
+.timer-text {
+  margin: 0;
+  @include text-small;
+  color: $app-dark-gray;
+
+  &.expired {
+    color: $app-red;
+  }
+}
+
+.code-input-section {
+  display: flex;
+  justify-content: center;
+}
+
+.code-field {
+  width: px-to-rem(200px);
+
+  .code-input {
+    text-align: center;
+    letter-spacing: px-to-rem(8px);
+
+    &::placeholder {
+      letter-spacing: px-to-rem(4px);
+      opacity: 0.5;
+    }
+  }
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: px-to-rem(8px);
+  padding: px-to-rem(12px) px-to-rem(16px);
+  background-color: $app-gray;
+  color: $app-red;
+  border-radius: px-to-rem(8px);
+  border-left: px-to-rem(4px) solid $app-red;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: px-to-rem(12px);
+}
+
+.verify-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: px-to-rem(8px);
+
+  .spinner {
+    width: px-to-rem(20px) !important;
+    height: px-to-rem(20px) !important;
+
+    ::ng-deep circle {
+      stroke: currentColor;
+    }
+  }
+}
+
+.resend-btn {
+  width: 100%;
+  color: $app-blue;
+  border: px-to-rem(1px) solid $app-blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: px-to-rem(8px);
+
+  .spinner {
+    width: px-to-rem(16px) !important;
+    height: px-to-rem(16px) !important;
+
+    ::ng-deep circle {
+      stroke: currentColor;
+    }
+  }
+
+  &:disabled {
+    color: $app-dark-gray;
+    border-color: $app-gray;
+  }
+}
+
+.secondary-actions {
+  margin-top: px-to-rem(16px);
+  text-align: center;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: px-to-rem(4px);
+  color: $app-dark-gray;
+}
+
+@media (max-width: $screen-s) {
+  .verify-container {
+    padding: px-to-rem(16px);
+  }
+
+  .verify-card {
+    max-width: 100%;
+
+    mat-card-header {
+      padding: px-to-rem(24px) px-to-rem(24px) px-to-rem(16px);
+
+      mat-card-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    mat-card-content {
+      padding: 0 px-to-rem(24px) px-to-rem(24px);
+    }
+  }
+
+  .verification-form {
+    gap: px-to-rem(20px);
+  }
+
+  .code-field {
+    width: px-to-rem(180px);
+  }
+}
+
+@media (max-width: $screen-xs) {
+  .verify-container {
+    padding: px-to-rem(12px);
+  }
+
+  .verify-card {
+    mat-card-header {
+      padding: px-to-rem(20px) px-to-rem(20px) px-to-rem(12px);
+    }
+  }
+
+  .code-field {
+    width: px-to-rem(160px);
+  }
+}

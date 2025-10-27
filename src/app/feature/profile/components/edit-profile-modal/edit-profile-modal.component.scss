@@ -1,0 +1,52 @@
+.avatar {
+  &-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &-preview {
+    position: relative;
+
+    button {
+      position: absolute;
+      right: px-to-rem(-20px);
+    }
+    img {
+      width: px-to-rem(150px);
+      height: px-to-rem(150px);
+      border-radius: 50%;
+      object-fit: cover;
+      border: px-to-rem(2px) solid $app-white;
+    }
+  }
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  row-gap: px-to-rem(16px);
+  width: 100%;
+  margin-top: px-to-rem(20px);
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  padding-bottom: px-to-rem(20px);
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: px-to-rem(8px);
+  padding: px-to-rem(12px) px-to-rem(16px);
+  background-color: $app-gray;
+  color: $app-red;
+  border-radius: px-to-rem(8px);
+  border-left: px-to-rem(4px) solid $app-red;
+}

@@ -1,0 +1,119 @@
+<div class="verify-container">
+  <mat-card class="verify-card">
+    <mat-card-header>
+      <mat-card-title class="text-lg">Verify Your Identity</mat-card-title>
+      <mat-card-subtitle class="text-base">
+        We've sent a verification code to your chosen method.
+        <br />Please enter the 6-digit code below.
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <!-- Loading state for initial code sending -->
+      <div *ngIf="isSendingCode() && !sessionId()" class="loading-section">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p class="text-base">Sending verification code...</p>
+      </div>
+
+      <!-- Verification form -->
+      <form
+        *ngIf="!isSendingCode() || sessionId()"
+        [formGroup]="verificationForm"
+        (ngSubmit)="onSubmit()"
+        class="verification-form"
+      >
+        <!-- Timer Section -->
+        <div class="timer-section">
+          <div class="timer-display" [class.expired]="timeLeft() === 0">
+            <mat-icon>schedule</mat-icon>
+            <span class="text-base">{{ formattedTime() }}</span>
+          </div>
+          <p class="timer-text" *ngIf="timeLeft() > 0">
+            Code expires in {{ formattedTime() }}
+          </p>
+          <p class="timer-text text-bold expired" *ngIf="timeLeft() === 0">
+            Code has expired
+          </p>
+        </div>
+
+        <!-- Code Input -->
+        <div class="code-input-section">
+          <mat-form-field appearance="outline" class="code-field">
+            <input
+              matInput
+              formControlName="verificationCode"
+              placeholder="000000"
+              maxlength="6"
+              (input)="onCodeInput($event)"
+              class="code-input"
+              [disableControl]="timeLeft() === 0"
+            />
+            <mat-error
+              *ngIf="
+                verificationForm.controls['verificationCode'].errors &&
+                verificationForm.controls['verificationCode'].touched
+              "
+            >
+              @if
+              (verificationForm.controls['verificationCode'].errors['required'])
+              { Verification code is required } @else { Code must be 6 digits }
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Error Message -->
+        <div class="error-message" *ngIf="errorMessage()">
+          <mat-icon>error</mat-icon>
+          <span>{{ errorMessage() }}</span>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="form-actions">
+          <!-- Verify Button -->
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="
+              verificationForm.invalid || isSubmitting() || timeLeft() === 0
+            "
+            class="verify-btn"
+          >
+            <mat-spinner
+              *ngIf="isSubmitting()"
+              diameter="20"
+              class="spinner"
+            ></mat-spinner>
+            <span *ngIf="!isSubmitting()">Verify Code</span>
+            <span *ngIf="isSubmitting()">Verifying...</span>
+          </button>
+
+          <!-- Request New Code Button -->
+          <button
+            mat-button
+            type="button"
+            [disabled]="!canRequestNewCode() || isSendingCode()"
+            (click)="requestNewCode()"
+            class="resend-btn"
+          >
+            <mat-spinner
+              *ngIf="isSendingCode() && sessionId()"
+              diameter="16"
+              class="spinner"
+            ></mat-spinner>
+            <span *ngIf="!isSendingCode()">Request New Code</span>
+            <span *ngIf="isSendingCode() && sessionId()">Sending...</span>
+          </button>
+        </div>
+
+        <!-- Back Button -->
+        <div class="secondary-actions">
+          <button mat-button type="button" (click)="goBack()" class="back-btn">
+            <mat-icon>arrow_back</mat-icon>
+            Back to Registration
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

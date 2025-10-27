@@ -1,0 +1,140 @@
+.register {
+  &-container {
+    padding-top: px-to-rem(100px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-card {
+    width: 100%;
+    max-width: px-to-rem(700px);
+    padding: px-to-rem(16px);
+  }
+
+  &-header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: px-to-rem(16px);
+
+    &-row {
+      display: flex;
+      align-items: center;
+      column-gap: px-to-rem(16px);
+      width: 100%;
+    }
+
+    &-field {
+      flex: 1;
+    }
+  }
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: px-to-rem(8px);
+  padding: px-to-rem(12px) px-to-rem(16px);
+  background-color: $app-gray;
+  color: $app-red;
+  border-radius: px-to-rem(8px);
+  border-left: px-to-rem(4px) solid $app-red;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: px-to-rem(12px);
+}
+
+.submit-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: px-to-rem(8px);
+
+  .spinner {
+    width: px-to-rem(20px) !important;
+    height: px-to-rem(20px) !important;
+
+    ::ng-deep circle {
+      stroke: currentColor;
+    }
+  }
+}
+
+.avatar {
+  &-section {
+    margin: px-to-rem(16px) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: px-to-rem(200px);
+  }
+
+  &-placeholder {
+    width: px-to-rem(100px);
+    height: px-to-rem(100px);
+    border-radius: 50%;
+    background-color: $app-gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: px-to-rem(8px);
+  }
+
+  &-preview {
+    margin-bottom: px-to-rem(8px);
+    position: relative;
+
+    img {
+      width: px-to-rem(100px);
+      height: px-to-rem(100px);
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    button {
+      position: absolute;
+      top: px-to-rem(-15px);
+      right: px-to-rem(-15px);
+    }
+  }
+}
+
+@media (max-width: $screen-s) {
+  .register {
+    &-card {
+      max-width: 100%;
+    }
+  }
+}
+
+@media (max-width: $screen-s) {
+  .register {
+    &-form {
+      &-row {
+        flex-direction: column;
+
+        &.radio-section {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      &-field {
+        width: 100%;
+      }
+    }
+  }
+}

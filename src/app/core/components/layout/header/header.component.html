@@ -1,0 +1,135 @@
+<mat-toolbar color="primary" class="header-toolbar">
+  <div class="header-container container-xxl">
+    <!-- Logo -->
+    <div class="logo-section">
+      <img src="/assets/images/logo.png" alt="Logo" class="logo" />
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav" *ngIf="!isMobile()">
+      <a class="nav-button text-base" (click)="onAboutUs()">About Us</a>
+      <a class="nav-button text-base" (click)="onPricing()">Pricing</a>
+
+      <!-- Non-authenticated user buttons -->
+      <ng-container *ngIf="!isAuthenticated()">
+        <button mat-raised-button color="primary" (click)="onSignIn()">
+          Sign In
+        </button>
+      </ng-container>
+
+      <!-- Authenticated user menu -->
+      <ng-container *ngIf="isAuthenticated() && userProfile()">
+        <button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
+          <div class="user-info">
+            <img
+              [src]="userProfile()?.avatar || 'assets/images/avatar.png'"
+              alt="Avatar"
+              class="user-avatar"
+            />
+            <span class="text-sm">{{ userProfile()?.username }}</span>
+          </div>
+          <mat-icon iconPositionEnd>expand_more</mat-icon>
+        </button>
+
+        <mat-menu #userMenu="matMenu" class="user-menu">
+          <button mat-menu-item (click)="onProfile()">
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+          </button>
+          <button mat-menu-item (click)="onEditProfile()">
+            <mat-icon>edit</mat-icon>
+            <span>Edit Profile</span>
+          </button>
+          <button mat-menu-item (click)="onLogout()">
+            <mat-icon>logout</mat-icon>
+            <span>Log Out</span>
+          </button>
+        </mat-menu>
+      </ng-container>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button
+      *ngIf="isMobile()"
+      mat-icon-button
+      class="mobile-menu-button"
+      (click)="toggleSideNav()"
+      aria-label="Toggle menu"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<!-- Mobile Side Navigation -->
+<mat-sidenav-container *ngIf="isMobile()" class="mobile-sidenav-container">
+  <mat-sidenav
+    #sidenav
+    mode="over"
+    [opened]="sideNavOpen()"
+    (closed)="closeSideNav()"
+    position="end"
+    class="mobile-sidenav"
+  >
+    <div class="sidenav-content">
+      <div class="sidenav-header">
+        <button mat-icon-button (click)="closeSideNav()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <nav class="sidenav-nav">
+        <a class="sidenav-button" (click)="onAboutUs()">
+          <mat-icon>info</mat-icon>
+          <span>About Us</span>
+        </a>
+
+        <a class="sidenav-button" (click)="onPricing()">
+          <mat-icon>attach_money</mat-icon>
+          <span>Pricing</span>
+        </a>
+
+        <!-- Non-authenticated user buttons -->
+        <ng-container *ngIf="!isAuthenticated()">
+          <button mat-raised-button color="primary" (click)="onSignIn()">
+            <mat-icon>login</mat-icon>
+            <span>Sign In</span>
+          </button>
+        </ng-container>
+
+        <!-- Authenticated user buttons -->
+        <ng-container *ngIf="isAuthenticated() && userProfile()">
+          <div class="user-section">
+            <div class="user-info-mobile">
+              <img
+                [src]="userProfile()?.avatar || 'assets/default-avatar.png'"
+                alt="Avatar"
+                class="user-avatar-mobile"
+              />
+              <span class="username-mobile">{{ userProfile()?.username }}</span>
+            </div>
+
+            <button mat-button class="sidenav-button" (click)="onProfile()">
+              <mat-icon>person</mat-icon>
+              <span>Profile</span>
+            </button>
+
+            <button mat-button class="sidenav-button" (click)="onEditProfile()">
+              <mat-icon>edit</mat-icon>
+              <span>Edit Profile</span>
+            </button>
+
+            <button
+              mat-button
+              class="sidenav-button danger"
+              (click)="onLogout()"
+            >
+              <mat-icon>logout</mat-icon>
+              <span>Log Out</span>
+            </button>
+          </div>
+        </ng-container>
+      </nav>
+    </div>
+  </mat-sidenav>
+</mat-sidenav-container>

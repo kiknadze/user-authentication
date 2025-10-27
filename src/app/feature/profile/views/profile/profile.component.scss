@@ -1,0 +1,129 @@
+.profile {
+  &-container {
+    margin: px-to-rem(100px) auto;
+    display: flex;
+    column-gap: px-to-rem(50px);
+  }
+
+  &-picture {
+    width: px-to-rem(300px);
+    padding: px-to-rem(20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: px-to-rem(20px);
+
+    &-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      img {
+        width: px-to-rem(150px);
+        height: px-to-rem(150px);
+        border-radius: 50%;
+        object-fit: cover;
+        border: px-to-rem(2px) solid $app-white;
+      }
+
+      &-badge {
+        position: absolute;
+        top: px-to-rem(20px);
+        right: px-to-rem(-5px);
+        background-color: $app-green;
+        border-radius: 50%;
+        padding: px-to-rem(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 px-to-rem(2px) px-to-rem(8px) $app-dark-gray;
+
+        mat-icon {
+          color: $app-white;
+        }
+      }
+    }
+  }
+
+  &-info {
+    flex: 1;
+    padding: px-to-rem(20px);
+
+    &-header {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: px-to-rem(20px);
+
+      &-item {
+        display: flex;
+        align-items: center;
+        width: 50%;
+        column-gap: px-to-rem(8px);
+      }
+
+      mat-icon {
+        height: px-to-rem(50px);
+        width: px-to-rem(50px);
+        font-size: px-to-rem(50px);
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-s) {
+  .profile {
+    &-container {
+      margin-top: 9rem;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &-picture,
+    &-info {
+      width: 100%;
+    }
+
+    &-picture {
+      position: relative;
+
+      .text-lg {
+        position: absolute;
+        top: 7rem;
+      }
+
+      &-container {
+        top: px-to-rem(-75px);
+      }
+
+      button {
+        position: absolute;
+        top: -8rem;
+        right: px-to-rem(12px);
+        color: $app-white;
+        border-color: $app-white;
+      }
+    }
+
+    &-info {
+      clip-path: inset(0px -10px -10px -10px);
+      margin-top: -3rem;
+
+      &-row {
+        flex-direction: column;
+        margin-bottom: 0;
+
+        &-item {
+          width: 100%;
+          margin-bottom: px-to-rem(20px);
+        }
+      }
+    }
+  }
+}

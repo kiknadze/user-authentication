@@ -1,0 +1,6 @@
+@use '../../variables';
+
+.mdc-button__label {
+    display: flex;
+    gap: variables.px-to-rem(10px);
+}

@@ -1,0 +1,73 @@
+/******************************************************************************
+    FUNCTIONS
+******************************************************************************/
+
+@function px-to-rem($px-value) {
+  $rem: calc($px-value / $app-site-base-font-size);
+  @return $rem + rem;
+}
+
+/******************************************************************************
+    BASIC
+******************************************************************************/
+
+$app-site-base-font-size: 16px;
+
+/******************************************************************************
+    SCREEN BREAKPOINTS
+******************************************************************************/
+
+$screen-xs: 360px;
+$screen-s: 767px;
+$screen-tablet: 1023px;
+$screen-desktop-small: 1535px;
+$screen-desktop-medium: 1919px;
+
+/******************************************************************************
+    COLORS
+******************************************************************************/
+
+// success
+$app-green: #4caf50;;
+
+// red
+$app-red: #f44336;
+
+// white
+$app-white: #ffffff;
+
+// blue
+$app-blue: #3f51b5;
+
+// gray
+$app-gray: #F3F4F4;
+
+// dark gray
+$app-dark-gray: #616161;
+
+// black
+$app-black: #000000;
+
+// shadow color
+$app-shadow-color: rgba(0, 0, 0, 0.1);
+
+/******************************************************************************
+    TEXT MIXINS
+******************************************************************************/
+
+@mixin text-large {
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: px-to-rem(28px) !important;
+  line-height: 1.5rem !important;
+}
+
+@mixin text-base {
+  font-size: 1rem !important;
+  line-height: 1.5rem !important;
+}
+
+@mixin text-small {
+  font-size: px-to-rem(14px) !important;
+  line-height: 1rem !important;
+}

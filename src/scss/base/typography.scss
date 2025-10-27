@@ -1,0 +1,40 @@
+@use '../variables.scss';
+
+// Font families
+.font-roboto {
+  font-family: 'Roboto', Arial, sans-serif !important;
+}
+
+// Font sizes
+.text-sm {
+  @include variables.text-small;
+}
+
+.text-base {
+  @include variables.text-base;
+}
+
+.text-lg {
+  @include variables.text-large;
+}
+
+// Font weights
+.text-light {
+  font-weight: 300;
+}
+
+.text-normal {
+  font-weight: 400;
+}
+
+.text-medium {
+  font-weight: 500;
+}
+
+.text-semibold {
+  font-weight: 600;
+}
+
+.text-bold {
+  font-weight: 700;
+}

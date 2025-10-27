@@ -1,0 +1,201 @@
+<div class="modal-header">
+  <h2 mat-dialog-title>Edit Profile</h2>
+</div>
+
+<div mat-dialog-content class="modal-content">
+  <form [formGroup]="editForm" class="edit-form">
+    <div class="avatar-section">
+      <div class="avatar-preview">
+        <img
+          [src]="selectedAvatar() || '/assets/images/avatar.png'"
+          alt="Avatar preview"
+          class="avatar-image"
+        />
+        <button
+          *ngIf="selectedAvatar()"
+          mat-icon-button
+          type="button"
+          class="remove-avatar-btn"
+          (click)="removeAvatar()"
+          matTooltip="Remove avatar"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <input
+        #avatarInput
+        type="file"
+        accept="image/*"
+        (change)="onAvatarSelected($event)"
+        style="display: none"
+      />
+
+      <button
+        mat-stroked-button
+        type="button"
+        (click)="avatarInput.click()"
+        class="upload-btn"
+      >
+        <mat-icon>upload</mat-icon>
+        {{ selectedAvatar() ? "Change Avatar" : "Upload Avatar" }}
+      </button>
+    </div>
+
+    <div class="form-fields">
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            formControlName="username"
+            placeholder="Enter your username"
+          />
+          <mat-error
+            *ngIf="
+              editForm.controls['username'].errors &&
+              editForm.controls['username'].touched
+            "
+          >
+            @if (editForm.controls['username'].errors['required']) { Username is
+            required } @else { Username must be at least 3 characters }
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email (Read-only)</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            [disableControl]="true"
+            readonly
+          />
+          <mat-icon matSuffix>lock</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Phone (Read-only)</mat-label>
+          <input
+            matInput
+            formControlName="phone"
+            [disableControl]="true"
+            readonly
+          />
+          <mat-icon matSuffix>lock</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Birth Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="birthDate"
+            readonly
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="
+              editForm.controls['birthDate'].errors &&
+              editForm.controls['birthDate'].touched
+            "
+          >
+            Birth Date is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Country</mat-label>
+          <input
+            matInput
+            formControlName="country"
+            [matAutocomplete]="countryAuto"
+            placeholder="Search for country"
+          />
+          <mat-autocomplete
+            #countryAuto="matAutocomplete"
+            [displayWith]="displayCountry"
+          >
+            <mat-option
+              *ngFor="let country of filteredCountries | async"
+              [value]="country"
+            >
+              {{ country.flag }} {{ country.name }}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error
+            *ngIf="
+              editForm.controls['country'].errors &&
+              editForm.controls['country'].touched
+            "
+          >
+            Country is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Website (Optional)</mat-label>
+          <input
+            matInput
+            formControlName="website"
+            placeholder="https://yourwebsite.com"
+          />
+          <mat-error
+            *ngIf="
+              editForm.controls['website'].errors &&
+              editForm.controls['website'].touched
+            "
+          >
+            Invalid URL format
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="error-message" *ngIf="errorMessage()">
+      <mat-icon>error</mat-icon>
+      <span>{{ errorMessage() }}</span>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions class="modal-actions">
+  <button
+    mat-button
+    type="button"
+    (click)="onCancel()"
+    [disabled]="isSubmitting()"
+  >
+    Cancel
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    (click)="onSave()"
+    [disabled]="editForm.invalid || isSubmitting()"
+    class="save-btn"
+  >
+    <mat-spinner
+      *ngIf="isSubmitting()"
+      diameter="20"
+      class="spinner"
+    ></mat-spinner>
+    <span *ngIf="!isSubmitting()">Save Changes</span>
+    <span *ngIf="isSubmitting()">Saving...</span>
+  </button>
+</div>

@@ -3,6 +3,33 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@core": [
+        "src/app/core"
+      ],
+      "@core/*": [
+        "src/app/core/*"
+      ],
+      "@shared": [
+        "src/app/shared"
+      ],
+      "@shared/*": [
+        "src/app/shared/*"
+      ],
+      "@profile": [
+        "src/app/features/profile"
+      ],
+      "@profile/*": [
+        "src/app/features/profile/*"
+      ],
+      "@auth": [
+        "src/app/features/authentication"
+      ],
+      "@auth/*": [
+        "src/app/features/authentication/*"
+      ]
+    },
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,

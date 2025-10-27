@@ -1,0 +1,22 @@
+@use '../variables';
+
+.container-xxl {
+  padding-right: 4rem !important;
+  padding-left: 4rem !important;
+  max-width: variables.px-to-rem(1536px);
+
+  @media (max-width: variables.$screen-desktop-small) {
+    padding-right: variables.px-to-rem(50px) !important;
+    padding-left: variables.px-to-rem(50px) !important;
+  }
+
+  @media (max-width: variables.$screen-tablet) {
+    padding-right: variables.px-to-rem(30px) !important;
+    padding-left: variables.px-to-rem(30px) !important;
+  }
+
+  @media (max-width: variables.$screen-s) {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+}

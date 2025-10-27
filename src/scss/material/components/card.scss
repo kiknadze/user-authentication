@@ -1,0 +1,7 @@
+@use '../../variables';
+
+.mdc-card {
+    border-radius: 0 !important;
+    width: fit-content;
+    box-shadow: 0 variables.px-to-rem(8px) variables.px-to-rem(32px) variables.$app-shadow-color !important;
+}

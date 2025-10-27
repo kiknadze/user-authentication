@@ -1,0 +1,160 @@
+.header-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: $app-white;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: px-to-rem(32px);
+}
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: px-to-rem(24px);
+}
+
+.nav-button {
+  color: $app-dark-gray;
+}
+
+.user-button {
+  .text-sm,
+  mat-icon {
+    color: $app-dark-gray;
+  }
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: px-to-rem(8px);
+}
+
+.user-avatar {
+  width: px-to-rem(32px);
+  height: px-to-rem(32px);
+  border-radius: 50%;
+  object-fit: cover;
+  border: px-to-rem(2px) solid $app-white;
+}
+
+.mobile-menu-button {
+  color: $app-dark-gray;
+}
+
+// Mobile sidenav styles
+.mat-drawer-container-has-open {
+  position: fixed;
+  top: 3rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.mobile-sidenav {
+  width: px-to-rem(280px);
+  background-color: $app-white;
+}
+
+.sidenav-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: px-to-rem(8px);
+  border-bottom: px-to-rem(1px) solid $app-gray;
+}
+
+.sidenav-nav {
+  flex: 1;
+  padding: px-to-rem(16px);
+}
+
+.sidenav-button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: px-to-rem(16px);
+  padding: px-to-rem(16px) 0;
+  text-align: left;
+  min-height: px-to-rem(48px);
+  color: $app-dark-gray;
+
+  &.danger {
+    mat-icon,
+    span {
+      color: $app-red;
+    }
+  }
+
+  .sign-in {
+    width: 100%;
+  }
+
+  &:hover:not(.primary) {
+    background-color: $app-gray;
+  }
+}
+
+.user-section {
+  border-top: px-to-rem(1px) solid $app-gray;
+  margin-top: px-to-rem(16px);
+  padding-top: px-to-rem(16px);
+}
+
+.user-info-mobile {
+  display: flex;
+  align-items: center;
+  gap: px-to-rem(12px);
+  padding: px-to-rem(16px) px-to-rem(24px);
+  margin-bottom: px-to-rem(8px);
+}
+
+.user-avatar-mobile {
+  width: px-to-rem(40px);
+  height: px-to-rem(40px);
+  border-radius: 50%;
+  object-fit: cover;
+  border: px-to-rem(2px) solid $app-white;
+}
+
+.user-menu {
+  margin-top: px-to-rem(8px);
+
+  .mat-mdc-menu-item {
+    display: flex;
+    align-items: center;
+    gap: px-to-rem(12px);
+    min-height: px-to-rem(48px);
+
+    mat-icon {
+      color: $app-dark-gray;
+    }
+  }
+}
+
+@media (max-width: $screen-xs) {
+  .mobile-sidenav {
+    width: 100%;
+  }
+}

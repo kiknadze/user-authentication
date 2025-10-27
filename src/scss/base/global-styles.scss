@@ -1,0 +1,21 @@
+@use '../variables';
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: variables.$app-site-base-font-size;
+  font-family: Roboto, Arial, sans-serif;
+  @include variables.text-base;
+  height: 100%;
+}
+
+body {
+  font-family: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+  color: variables.$app-dark-gray;
+  font-size: variables.$app-site-base-font-size;
+}

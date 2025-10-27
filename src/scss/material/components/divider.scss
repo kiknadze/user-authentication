@@ -1,0 +1,6 @@
+@use '../../variables';
+
+.mat-divider {
+    width: 100%;
+    margin: variables.px-to-rem(16px) 0 !important;
+}
