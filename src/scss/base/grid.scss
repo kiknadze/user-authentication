@@ -4,6 +4,8 @@
   padding-right: 4rem !important;
   padding-left: 4rem !important;
   max-width: variables.px-to-rem(1536px);
+  width: 100% !important;
+  margin: 0 auto !important;
 
   @media (max-width: variables.$screen-desktop-small) {
     padding-right: variables.px-to-rem(50px) !important;
